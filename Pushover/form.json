@@ -1,0 +1,17 @@
+{
+    "elements":
+    [
+        { "type": "ValidationTextBox", "name": "ApplicationToken", "caption": "Application Token (required)" },
+		{ "type": "ValidationTextBox", "name": "UserToken", "caption": "User Token (required)" },
+		{ "type": "ValidationTextBox", "name": "DeviceToken", "caption": "Device Token (optional)" }
+
+    ],
+    "actions":
+    [
+		{ "type": "Button", "label": "Send Testmessage",  "onClick": "if(TUPO_SendMessage($id,'Testnachricht','Dies ist eine Testnachricht von Symcon_Pushover',0)) echo 'OK'; else echo 'Fehler'"  }
+   
+    ],
+    "status":
+    [
+    ]
+}

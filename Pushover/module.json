@@ -1,0 +1,14 @@
+{
+	"id": "{CAA4B646-5571-4B72-8897-7A3739B25C99}",
+	"name": "Pushover",
+	"type": 3,
+	"vendor": "Pushover",
+	"aliases": 
+	[
+		"Pushover"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "TUPO"
+}

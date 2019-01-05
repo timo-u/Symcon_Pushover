@@ -1,0 +1,10 @@
+{
+	"translations": {
+		"de": {
+		"Application Token (required)" : "Anwendungs-Token (erforderlich)",
+		"User Token (required)" : "Benutzer-Toke (erforderlich)",
+		"Device Token (optional)" : "Geräte-Token (optional)",
+		"Send Testmessage" : "Testnachticht senden"
+		}
+	}
+}
