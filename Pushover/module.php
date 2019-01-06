@@ -19,20 +19,20 @@
 
         public function SendMessage(string $title, string $message, int $priority = 0)
         {
-            return $this -> SendMessageComplete($title,$message,'','',$priority,0,60,3600,'');
+            return $this->SendMessageComplete($title, $message, '', '', $priority, 0, 60, 3600, '');
         }
 
-		public function SendMessageHtml(string $title, string $message, int $priority = 0)
+        public function SendMessageHtml(string $title, string $message, int $priority = 0)
         {
-            return $this -> SendMessageComplete($title,$message,'','',$priority,1,60,3600,'');
+            return $this->SendMessageComplete($title, $message, '', '', $priority, 1, 60, 3600, '');
         }
-		
+
         public function SendMessageUrl(string $title, string $message, string $url = '', string $urlTitle = '', int $priority = 0)
         {
-           return $this -> SendMessageComplete($title,$message,$url,$urlTitle,$priority,0,60,3600,'');
+            return $this->SendMessageComplete($title, $message, $url, $urlTitle, $priority, 0, 60, 3600, '');
         }
-		
-		public function SendMessageComplete(string $title, string $message, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0 , int $retry = 30, int $expire = 3600,string $sound = '')
+
+        public function SendMessageComplete(string $title, string $message, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0, int $retry = 30, int $expire = 3600, string $sound = '')
         {
             curl_setopt_array($ch = curl_init(), [
             CURLOPT_URL        => 'https://api.pushover.net/1/messages.json',
@@ -45,33 +45,35 @@
                     'url'       => $url,
                     'url_title' => $urlTitle,
                     'priority'  => $priority,
-					'html'  	=> $html,
-					'sound'  	=> $sound,					
+                    'html'  	   => $html,
+                    'sound'  	  => $sound,
                     'retry'     => $retry,
-                    'expire'    => $expire
+                    'expire'    => $expire,
                     ],
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
                 ]);
-			$response = curl_exec($ch);
+            $response = curl_exec($ch);
             curl_close($ch);
-			
-			$responseObject = json_decode($response);
-			if ($responseObject == null) 
-			{
-				return false;
-			}
-			if($responseObject-> {'status'} == 1)
-			{
-				$this->SetStatus(102);
-				return true;
-			}			
-			if(property_exists($responseObject , 'user') && $responseObject-> {'user'} == 'invalid')
-				$this->SetStatus(201);
-			if(property_exists($responseObject , 'token') && $responseObject-> {'token'} == 'invalid')
-				$this->SetStatus(202);
-			
-			IPS_LogMessage("Pushover", implode ( $responseObject-> {'errors'}, ' ; ') );
+
+            $responseObject = json_decode($response);
+            if ($responseObject == null) {
+                return false;
+            }
+            if ($responseObject->{'status'} == 1) {
+                $this->SetStatus(102);
+
+                return true;
+            }
+            if (property_exists($responseObject, 'user') && $responseObject->{'user'} == 'invalid') {
+                $this->SetStatus(201);
+            }
+            if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
+                $this->SetStatus(202);
+            }
+
+            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+
             return false;
         }
 
@@ -92,25 +94,27 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
                 ]);
-			$response = curl_exec($ch);
+            $response = curl_exec($ch);
             curl_close($ch);
-			
-			$responseObject = json_decode($response);
-			if ($responseObject == null) 
-			{
-				return false;
-			}
-			if($responseObject-> {'status'} == 1)
-			{
-				$this->SetStatus(102);
-				return true;
-			}			
-			if(property_exists($responseObject , 'user') && $responseObject-> {'user'} == 'invalid')
-				$this->SetStatus(201);
-			if(property_exists($responseObject , 'token') && $responseObject-> {'token'} == 'invalid')
-				$this->SetStatus(202);
-			
-			IPS_LogMessage("Pushover", implode ( $responseObject-> {'errors'}, ' ; ') );
+
+            $responseObject = json_decode($response);
+            if ($responseObject == null) {
+                return false;
+            }
+            if ($responseObject->{'status'} == 1) {
+                $this->SetStatus(102);
+
+                return true;
+            }
+            if (property_exists($responseObject, 'user') && $responseObject->{'user'} == 'invalid') {
+                $this->SetStatus(201);
+            }
+            if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
+                $this->SetStatus(202);
+            }
+
+            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+
             return false;
         }
 
@@ -129,25 +133,27 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
                 ]);
-			$response = curl_exec($ch);
+            $response = curl_exec($ch);
             curl_close($ch);
-			
-			$responseObject = json_decode($response);
-			if ($responseObject == null) 
-			{
-				return false;
-			}
-			if($responseObject-> {'status'} == 1)
-			{
-				$this->SetStatus(102);
-				return true;
-			}			
-			if(property_exists($responseObject , 'user') && $responseObject-> {'user'} == 'invalid')
-				$this->SetStatus(201);
-			if(property_exists($responseObject , 'token') && $responseObject-> {'token'} == 'invalid')
-				$this->SetStatus(202);
-			
-			IPS_LogMessage("Pushover", implode ( $responseObject-> {'errors'}, ' ; ') );
+
+            $responseObject = json_decode($response);
+            if ($responseObject == null) {
+                return false;
+            }
+            if ($responseObject->{'status'} == 1) {
+                $this->SetStatus(102);
+
+                return true;
+            }
+            if (property_exists($responseObject, 'user') && $responseObject->{'user'} == 'invalid') {
+                $this->SetStatus(201);
+            }
+            if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
+                $this->SetStatus(202);
+            }
+
+            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+
             return false;
         }
 
@@ -165,25 +171,27 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
                 ]);
-			$response = curl_exec($ch);
+            $response = curl_exec($ch);
             curl_close($ch);
-			
-			$responseObject = json_decode($response);
-			if ($responseObject == null) 
-			{
-				return false;
-			}
-			if($responseObject-> {'status'} == 1)
-			{
-				$this->SetStatus(102);
-				return true;
-			}			
-			if(property_exists($responseObject , 'user') && $responseObject-> {'user'} == 'invalid')
-				$this->SetStatus(201);
-			if(property_exists($responseObject , 'token') && $responseObject-> {'token'} == 'invalid')
-				$this->SetStatus(202);
-			
-			IPS_LogMessage("Pushover", implode ( $responseObject-> {'errors'}, ' ; ') );
+
+            $responseObject = json_decode($response);
+            if ($responseObject == null) {
+                return false;
+            }
+            if ($responseObject->{'status'} == 1) {
+                $this->SetStatus(102);
+
+                return true;
+            }
+            if (property_exists($responseObject, 'user') && $responseObject->{'user'} == 'invalid') {
+                $this->SetStatus(201);
+            }
+            if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
+                $this->SetStatus(202);
+            }
+
+            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+
             return false;
         }
 
@@ -205,25 +213,27 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
                 ]);
-			$response = curl_exec($ch);
+            $response = curl_exec($ch);
             curl_close($ch);
-			
-			$responseObject = json_decode($response);
-			if ($responseObject == null) 
-			{
-				return false;
-			}
-			if($responseObject-> {'status'} == 1)
-			{
-				$this->SetStatus(102);
-				return true;
-			}			
-			if(property_exists($responseObject , 'user') && $responseObject-> {'user'} == 'invalid')
-				$this->SetStatus(201);
-			if(property_exists($responseObject , 'token') && $responseObject-> {'token'} == 'invalid')
-				$this->SetStatus(202);
-			
-			IPS_LogMessage("Pushover", implode ( $responseObject-> {'errors'}, ' ; ') );
+
+            $responseObject = json_decode($response);
+            if ($responseObject == null) {
+                return false;
+            }
+            if ($responseObject->{'status'} == 1) {
+                $this->SetStatus(102);
+
+                return true;
+            }
+            if (property_exists($responseObject, 'user') && $responseObject->{'user'} == 'invalid') {
+                $this->SetStatus(201);
+            }
+            if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
+                $this->SetStatus(202);
+            }
+
+            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+
             return false;
         }
     }
