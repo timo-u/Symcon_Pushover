@@ -18,7 +18,7 @@ Token um ein Bestimmtes Gerät anzusprechen
 TUPO_SendMessage(12345/*instanz-ID*/,"Title","Message",0);
 ```
 
-#### Nachrichten mit URL Senden
+#### Nachrichten mit URL senden
 ```php
 TUPO_SendMessageUrl(12345/*instanz-ID*/,"Title","Message","https://google.de","Link zu google",0);
 ```
@@ -32,7 +32,18 @@ SendMessageUrl(12345/*instanz-ID*/,"Title",'<b>Text</b>',"https://google.de","UR
 #### Nachrichten mit allen Parametern senden
 ```php
 TUPO_SendMessageComplete(12345/*instanz-ID*/,"Title",'Text',"https://google.de","URL-Title",0/* priority */,0/* content is HTML */,30 /* retry */,60 /* expire */,'pianobar' /* sound */ );
+
+
+#### Nachrichten mit Anhang senden
+```php
+TUPO_SendMessageAttachment(12345/*instanz-ID*/,"Title","Message",'../media/test.png',0);
 ```
+
+#### Nachrichten mit Anhang und allen Parametern senden
+```php
+TUPO_SendMessageAttachmentComplete(12345/*instanz-ID*/,"Title",'Text','../media/test.png',"https://google.de","URL-Title",0/* priority */,0/* content is HTML */,30 /* retry */,60 /* expire */,'pianobar' /* sound */ );
+```
+
 
 #### Glances Text senden
 ```php

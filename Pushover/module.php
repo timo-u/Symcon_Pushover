@@ -19,17 +19,17 @@
 
         public function SendMessage(string $title, string $message, int $priority = 0)
         {
-            return $this->SendMessageComplete($title, $message, '', '', $priority, 0, 60, 3600, '');
+            return $this->SendMessageComplete($title, $message, '', '', $priority);
         }
 
         public function SendMessageHtml(string $title, string $message, int $priority = 0)
         {
-            return $this->SendMessageComplete($title, $message, '', '', $priority, 1, 60, 3600, '');
+            return $this->SendMessageComplete($title, $message, '', '', $priority, 1);
         }
 
         public function SendMessageUrl(string $title, string $message, string $url = '', string $urlTitle = '', int $priority = 0)
         {
-            return $this->SendMessageComplete($title, $message, $url, $urlTitle, $priority, 0, 60, 3600, '');
+            return $this->SendMessageComplete($title, $message, $url, $urlTitle, $priority);
         }
 
         public function SendMessageComplete(string $title, string $message, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0, int $retry = 30, int $expire = 3600, string $sound = '')
@@ -77,6 +77,66 @@
             return false;
         }
 
+		 public function SendMessageAttachment(string $title, string $message,string $attachment, int $priority = 0)
+        {
+			 return $this->SendMessageAttachmentComplete($title, $message, $attachment);
+		}
+		 public function SendMessageAttachmentComplete(string $title, string $message,string $attachment, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0, int $retry = 30, int $expire = 3600, string $sound = '')
+        {
+			$attachment =realpath($attachment );
+			if(!file_exists($attachment)) 
+			{
+				IPS_LogMessage('Pushover' , 'file not found: '. $attachment);
+				return false; 
+			}
+			
+			$cfile = new CURLFile($attachment); 
+			 
+			$post = array(
+					'attachment'    => $cfile, 
+                    'token'     	=> $this->ReadPropertyString('ApplicationToken'),
+                    'user'      	=> $this->ReadPropertyString('UserToken'),
+                    'device'    	=> $this->ReadPropertyString('DeviceToken'),
+                    'title'     	=> $title,
+                    'message'   	=> $message,
+                    'url'       	=> $url,
+                    'url_title' 	=> $urlTitle,
+                    'priority'  	=> $priority,
+                    'html'  	   	=> $html,
+                    'sound'  	  	=> $sound,
+                    'retry'     	=> $retry,
+                    'expire'    	=> $expire
+					);    
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL,'https://api.pushover.net/1/messages.json');
+			curl_setopt($ch, CURLOPT_POST,1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+			curl_setopt($ch, CURLOPT_VERBOSE,true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+
+            $responseObject = json_decode($response);
+            if ($responseObject == null) {
+                return false;
+            }
+            if ($responseObject->{'status'} == 1) {
+                $this->SetStatus(102);
+
+                return true;
+            }
+            if (property_exists($responseObject, 'user') && $responseObject->{'user'} == 'invalid') {
+                $this->SetStatus(201);
+            }
+            if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
+                $this->SetStatus(202);
+            }
+
+            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+
+            return false;
+        }
+		
         public function GlancesClear()
         {
             curl_setopt_array($ch = curl_init(), [
