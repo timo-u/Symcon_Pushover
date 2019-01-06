@@ -77,42 +77,43 @@
             return false;
         }
 
-		 public function SendMessageAttachment(string $title, string $message,string $attachment, int $priority = 0)
+        public function SendMessageAttachment(string $title, string $message, string $attachment, int $priority = 0)
         {
-			 return $this->SendMessageAttachmentComplete($title, $message, $attachment);
-		}
-		 public function SendMessageAttachmentComplete(string $title, string $message,string $attachment, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0, int $retry = 30, int $expire = 3600, string $sound = '')
+            return $this->SendMessageAttachmentComplete($title, $message, $attachment);
+        }
+
+        public function SendMessageAttachmentComplete(string $title, string $message, string $attachment, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0, int $retry = 30, int $expire = 3600, string $sound = '')
         {
-			$attachment =realpath($attachment );
-			if(!file_exists($attachment)) 
-			{
-				IPS_LogMessage('Pushover' , 'file not found: '. $attachment);
-				return false; 
-			}
-			
-			$cfile = new CURLFile($attachment); 
-			 
-			$post = array(
-					'attachment'    => $cfile, 
-                    'token'     	=> $this->ReadPropertyString('ApplicationToken'),
-                    'user'      	=> $this->ReadPropertyString('UserToken'),
-                    'device'    	=> $this->ReadPropertyString('DeviceToken'),
-                    'title'     	=> $title,
-                    'message'   	=> $message,
-                    'url'       	=> $url,
-                    'url_title' 	=> $urlTitle,
-                    'priority'  	=> $priority,
-                    'html'  	   	=> $html,
-                    'sound'  	  	=> $sound,
-                    'retry'     	=> $retry,
-                    'expire'    	=> $expire
-					);    
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,'https://api.pushover.net/1/messages.json');
-			curl_setopt($ch, CURLOPT_POST,1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-			curl_setopt($ch, CURLOPT_VERBOSE,true);
+            $attachment = realpath($attachment);
+            if (!file_exists($attachment)) {
+                IPS_LogMessage('Pushover', 'file not found: '.$attachment);
+
+                return false;
+            }
+
+            $cfile = new CURLFile($attachment);
+
+            $post = [
+                    'attachment'    => $cfile,
+                    'token'     	   => $this->ReadPropertyString('ApplicationToken'),
+                    'user'      	   => $this->ReadPropertyString('UserToken'),
+                    'device'    	   => $this->ReadPropertyString('DeviceToken'),
+                    'title'     	   => $title,
+                    'message'   	   => $message,
+                    'url'       	   => $url,
+                    'url_title' 	   => $urlTitle,
+                    'priority'  	   => $priority,
+                    'html'  	   	   => $html,
+                    'sound'  	  	   => $sound,
+                    'retry'     	   => $retry,
+                    'expire'    	   => $expire,
+                    ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'https://api.pushover.net/1/messages.json');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_VERBOSE, true);
             $response = curl_exec($ch);
             curl_close($ch);
 
@@ -136,7 +137,7 @@
 
             return false;
         }
-		
+
         public function GlancesClear()
         {
             curl_setopt_array($ch = curl_init(), [
