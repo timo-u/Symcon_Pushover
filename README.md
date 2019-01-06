@@ -9,3 +9,10 @@ Des weiteren unsterstützt das Modul die Aktualisierung der Pushover Glances wel
 * IP-Symcon ab Version 5.0 (https://www.symcon.de/)
 
 * Pushover-Account (http://pushover.net/)
+
+## Aufruf der Funktionen 
+
+Der Aufruf der Funktionen ist in der Instanz beschrieben: 
+
+[Beschreibung](https://github.com/timo-u/Symcon_Pushover/blob/master/Pushover/README.md)
+
