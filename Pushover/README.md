@@ -32,7 +32,7 @@ SendMessageUrl(12345/*instanz-ID*/,"Title",'<b>Text</b>',"https://google.de","UR
 #### Nachrichten mit allen Parametern senden
 ```php
 TUPO_SendMessageComplete(12345/*instanz-ID*/,"Title",'Text',"https://google.de","URL-Title",0/* priority */,0/* content is HTML */,30 /* retry */,60 /* expire */,'pianobar' /* sound */ );
-
+```
 
 #### Nachrichten mit Anhang senden
 ```php
