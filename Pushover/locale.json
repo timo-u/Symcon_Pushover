@@ -4,6 +4,8 @@
 		"Application Token (required)" : "Anwendungs-Token (erforderlich)",
 		"User Token (required)" : "Benutzer-Toke (erforderlich)",
 		"Device Token (optional)" : "Geräte-Token (optional)",
+		"Application-Token Invalid" : "Anwendungs-Token fehlerhaft",
+		"User-Token Invalid" : "Benutzer-Toke fehlerhaft",
 		"Send Testmessage" : "Testnachticht senden"
 		}
 	}
