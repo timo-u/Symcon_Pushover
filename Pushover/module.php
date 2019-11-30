@@ -1,6 +1,5 @@
 <?php
 
-
     class Pushover extends IPSModule
     {
         public function Create()
