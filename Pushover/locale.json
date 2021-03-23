@@ -2,10 +2,10 @@
 	"translations": {
 		"de": {
 		"Application Token (required)" : "Anwendungs-Token (erforderlich)",
-		"User Token (required)" : "Benutzer-Toke (erforderlich)",
+		"User Token (required)" : "Benutzer-Token (erforderlich)",
 		"Device Token (optional)" : "Geräte-Token (optional)",
 		"Application-Token Invalid" : "Anwendungs-Token fehlerhaft",
-		"User-Token Invalid" : "Benutzer-Toke fehlerhaft",
+		"User-Token Invalid" : "Benutzer-Token fehlerhaft",
 		"Send Testmessage" : "Testnachticht senden"
 		}
 	}

@@ -4,13 +4,13 @@
 #### Einstellungen der Geräte-Instanz
 
 ##### Application Token 
-Token der Anwendung 
+Token der Anwendung.
 
 ##### User Token 
-Token des Users, an den die Nachricht gesendet werden soll
+Token des Users, an den die Nachricht gesendet werden soll.
 
 ##### Device Token 
-Token um ein Bestimmtes Gerät anzusprechen
+Token um ein Bestimmtes Gerät anzusprechen.
 
 
 #### Nachrichten Senden mit Priorität 0

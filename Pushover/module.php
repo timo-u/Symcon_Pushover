@@ -71,7 +71,7 @@
                 $this->SetStatus(202);
             }
 
-            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+           IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
 
             return false;
         }
@@ -132,7 +132,7 @@
                 $this->SetStatus(202);
             }
 
-            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
 
             return false;
         }
@@ -212,7 +212,7 @@
                 $this->SetStatus(202);
             }
 
-            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
 
             return false;
         }
@@ -250,7 +250,7 @@
                 $this->SetStatus(202);
             }
 
-            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
 
             return false;
         }
@@ -292,7 +292,7 @@
                 $this->SetStatus(202);
             }
 
-            IPS_LogMessage('Pushover', implode($responseObject->{'errors'}, ' ; '));
+            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
 
             return false;
         }
