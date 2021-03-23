@@ -34,8 +34,8 @@
         public function SendMessageComplete(string $title, string $message, string $url = '', string $urlTitle = '', int $priority = 0, int $html = 0, int $retry = 30, int $expire = 3600, string $sound = '')
         {
             curl_setopt_array($ch = curl_init(), [
-            CURLOPT_URL        => 'https://api.pushover.net/1/messages.json',
-            CURLOPT_POSTFIELDS => [
+                CURLOPT_URL        => 'https://api.pushover.net/1/messages.json',
+                CURLOPT_POSTFIELDS => [
                     'token'     => $this->ReadPropertyString('ApplicationToken'),
                     'user'      => $this->ReadPropertyString('UserToken'),
                     'device'    => $this->ReadPropertyString('DeviceToken'),
@@ -48,10 +48,10 @@
                     'sound'  	  => $sound,
                     'retry'     => $retry,
                     'expire'    => $expire,
-                    ],
+                ],
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
-                ]);
+            ]);
             $response = curl_exec($ch);
             curl_close($ch);
 
@@ -71,7 +71,7 @@
                 $this->SetStatus(202);
             }
 
-           IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
+            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
 
             return false;
         }
@@ -93,20 +93,20 @@
             $cfile = new CURLFile($attachment);
 
             $post = [
-                    'attachment'    => $cfile,
-                    'token'     	   => $this->ReadPropertyString('ApplicationToken'),
-                    'user'      	   => $this->ReadPropertyString('UserToken'),
-                    'device'    	   => $this->ReadPropertyString('DeviceToken'),
-                    'title'     	   => $title,
-                    'message'   	   => $message,
-                    'url'       	   => $url,
-                    'url_title' 	   => $urlTitle,
-                    'priority'  	   => $priority,
-                    'html'  	   	   => $html,
-                    'sound'  	  	   => $sound,
-                    'retry'     	   => $retry,
-                    'expire'    	   => $expire,
-                    ];
+                'attachment'    => $cfile,
+                'token'     	   => $this->ReadPropertyString('ApplicationToken'),
+                'user'      	   => $this->ReadPropertyString('UserToken'),
+                'device'    	   => $this->ReadPropertyString('DeviceToken'),
+                'title'     	   => $title,
+                'message'   	   => $message,
+                'url'       	   => $url,
+                'url_title' 	   => $urlTitle,
+                'priority'  	   => $priority,
+                'html'  	   	   => $html,
+                'sound'  	  	   => $sound,
+                'retry'     	   => $retry,
+                'expire'    	   => $expire,
+            ];
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'https://api.pushover.net/1/messages.json');
             curl_setopt($ch, CURLOPT_POST, 1);
@@ -140,8 +140,8 @@
         public function GlancesClear()
         {
             curl_setopt_array($ch = curl_init(), [
-            CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
-            CURLOPT_POSTFIELDS => [
+                CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
+                CURLOPT_POSTFIELDS => [
                     'token'   => $this->ReadPropertyString('ApplicationToken'),
                     'user'    => $this->ReadPropertyString('UserToken'),
                     'device'  => $this->ReadPropertyString('DeviceToken'),
@@ -150,10 +150,10 @@
                     'subtext' => '',
                     'count'   => '',
                     'percent' => '',
-                    ],
+                ],
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
-                ]);
+            ]);
             $response = curl_exec($ch);
             curl_close($ch);
 
@@ -181,18 +181,18 @@
         public function Glances(string $title, string $text, string $subtext)
         {
             curl_setopt_array($ch = curl_init(), [
-            CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
-            CURLOPT_POSTFIELDS => [
+                CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
+                CURLOPT_POSTFIELDS => [
                     'token'   => $this->ReadPropertyString('ApplicationToken'),
                     'user'    => $this->ReadPropertyString('UserToken'),
                     'device'  => $this->ReadPropertyString('DeviceToken'),
                     'title'   => $title,
                     'text'    => $text,
                     'subtext' => $subtext,
-                    ],
+                ],
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
-                ]);
+            ]);
             $response = curl_exec($ch);
             curl_close($ch);
 
@@ -220,17 +220,17 @@
         public function GlancesCount(int $count)
         {
             curl_setopt_array($ch = curl_init(), [
-            CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
-            CURLOPT_POSTFIELDS => [
+                CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
+                CURLOPT_POSTFIELDS => [
                     'token'   => $this->ReadPropertyString('ApplicationToken'),
                     'user'    => $this->ReadPropertyString('UserToken'),
                     'device'  => $this->ReadPropertyString('DeviceToken'),
                     'count'   => $count,
                     'percent' => '',
-                    ],
+                ],
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
-                ]);
+            ]);
             $response = curl_exec($ch);
             curl_close($ch);
 
@@ -262,17 +262,17 @@
             }
 
             curl_setopt_array($ch = curl_init(), [
-            CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
-            CURLOPT_POSTFIELDS => [
+                CURLOPT_URL        => 'https://api.pushover.net/1/glances.json',
+                CURLOPT_POSTFIELDS => [
                     'token'   => $this->ReadPropertyString('ApplicationToken'),
                     'user'    => $this->ReadPropertyString('UserToken'),
                     'device'  => $this->ReadPropertyString('DeviceToken'),
                     'percent' => $percent,
                     'count'   => '',
-                    ],
+                ],
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
-                ]);
+            ]);
             $response = curl_exec($ch);
             curl_close($ch);
 
