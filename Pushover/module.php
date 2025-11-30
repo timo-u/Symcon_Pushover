@@ -53,8 +53,13 @@
                 CURLOPT_RETURNTRANSFER => true,
             ]);
             $response = curl_exec($ch);
-            curl_close($ch);
-
+			$err = curl_error($ch);
+            
+			curl_close($ch);
+			
+			$this->SendDebug(__FUNCTION__, ' Response: ' . $response, 0);
+			$this->SendDebug(__FUNCTION__, ' Error: ' . $err, 0);
+			
             $responseObject = json_decode($response);
             if ($responseObject == null) {
                 return false;
@@ -113,9 +118,15 @@
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_VERBOSE, true);
+			
             $response = curl_exec($ch);
-            curl_close($ch);
-
+			$err = curl_error($ch);
+            
+			curl_close($ch);
+			
+			$this->SendDebug(__FUNCTION__, ' Response: ' . $response, 0);
+			$this->SendDebug(__FUNCTION__, ' Error: ' . $err, 0);
+			
             $responseObject = json_decode($response);
             if ($responseObject == null) {
                 return false;
@@ -154,8 +165,14 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
             ]);
+			
             $response = curl_exec($ch);
-            curl_close($ch);
+			$err = curl_error($ch);
+            
+			curl_close($ch);
+			
+			$this->SendDebug(__FUNCTION__, ' Response: ' . $response, 0);
+			$this->SendDebug(__FUNCTION__, ' Error: ' . $err, 0);
 
             $responseObject = json_decode($response);
             if ($responseObject == null) {
@@ -193,9 +210,15 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
             ]);
+			
             $response = curl_exec($ch);
-            curl_close($ch);
-
+			$err = curl_error($ch);
+            
+			curl_close($ch);
+			
+			$this->SendDebug(__FUNCTION__, ' Response: ' . $response, 0);
+			$this->SendDebug(__FUNCTION__, ' Error: ' . $err, 0);
+			
             $responseObject = json_decode($response);
             if ($responseObject == null) {
                 return false;
@@ -211,9 +234,7 @@
             if (property_exists($responseObject, 'token') && $responseObject->{'token'} == 'invalid') {
                 $this->SetStatus(202);
             }
-
-            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
-
+		
             return false;
         }
 
@@ -231,10 +252,16 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
             ]);
+			
             $response = curl_exec($ch);
-            curl_close($ch);
-
-            $responseObject = json_decode($response);
+			$err = curl_error($ch);
+            
+			curl_close($ch);
+			
+			$this->SendDebug(__FUNCTION__, ' Response: ' . $response, 0);
+			$this->SendDebug(__FUNCTION__, ' Error: ' . $err, 0);
+            
+			$responseObject = json_decode($response);
             if ($responseObject == null) {
                 return false;
             }
@@ -273,8 +300,14 @@
                 CURLOPT_SAFE_UPLOAD    => true,
                 CURLOPT_RETURNTRANSFER => true,
             ]);
+			
             $response = curl_exec($ch);
-            curl_close($ch);
+			$err = curl_error($ch);
+            
+			curl_close($ch);
+			
+			$this->SendDebug(__FUNCTION__, ' Response: ' . $response, 0);
+			$this->SendDebug(__FUNCTION__, ' Error: ' . $err, 0);
 
             $responseObject = json_decode($response);
             if ($responseObject == null) {
@@ -292,7 +325,7 @@
                 $this->SetStatus(202);
             }
 
-            IPS_LogMessage('Pushover', json_encode($responseObject->{'errors'}));
+            
 
             return false;
         }
